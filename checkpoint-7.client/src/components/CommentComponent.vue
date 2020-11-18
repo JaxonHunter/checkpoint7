@@ -1,5 +1,6 @@
 <template>
   <div class="commentComponent">
+    <h5>{{ state.changedComment.author }}</h5>
     <form class="form-group" @submit.prevent="editComment">
       <input class="form-control" type="text" v-model="state.changedComment.body">
     </form>
@@ -18,11 +19,16 @@ export default {
       changedComment: {}
     })
     onMounted(() => {
+      state.changedComment.author = props.commentProp.author
       state.changedComment.body = props.commentProp.body
       state.changedComment.taskId = props.commentProp.taskId
+      state.changedComment.bugId = props.commentProp.bugId
     })
     return {
       state,
+      getComment() {
+        commentService.getComments(props.commentProp._id, state.changedComment)
+      },
       editComment() {
         commentService.editComment(props.commentProp._id, state.changedComment)
       },

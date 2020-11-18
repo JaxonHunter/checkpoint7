@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 const Bug = new Schema(
   {
     title: { type: String, required: true },
-    profile: { type: String, ref: 'Profile', required: true },
-    author: { type: String, ref: 'Author', required: true },
-    completed: { type: Boolean, ref: 'Completed', required: true}
+    author: { type: String, required: true },
+    body: {type: String, required: true },
+    completed: { type: Boolean, required: true, default: false}
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

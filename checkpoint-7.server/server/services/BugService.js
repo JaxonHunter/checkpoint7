@@ -11,17 +11,6 @@ class BugService {
     return await dbContext.Bugs.create(body)
   }
 
-  async delete(id, userId) {
-    const bugProfile = await dbContext.Bugs.findById(id)
-    // @ts-ignore
-    if (userId === bugProfile.profile) {
-      await dbContext.Bugs.findByIdAndDelete(id)
-      if (!Bug) {
-        throw new BadRequest('No found Bug')
-      } return this.getBugs()
-    } throw new BadRequest('Access Denied')
-  }
-
   async edit(id, body) {
     await dbContext.Bugs.findByIdAndUpdate(id, body, { new: true })
     if (!Bug) {

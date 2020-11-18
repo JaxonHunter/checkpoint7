@@ -6,7 +6,7 @@ const Comment = new Schema(
   {
     bugId: { type: ObjectId, ref: 'Bug', required: true },
     body: { type: String, required: true },
-    author: { type: String, ref: 'Author', required: true}
+    author: { type: String, required: true}
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

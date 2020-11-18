@@ -5,12 +5,12 @@
         <input class="form-control" type="text" placeholder="Bug Name" v-model="state.newBug.title">
         <input class="form-control" type="text" placeholder="Who is reporting it" v-model="state.newBug.author">
         <input class="form-control" type="text" placeholder="What is the issue" v-model="state.newBug.body">
-        <button class="btn btn-outline-info btn-lg mb-2" type="submit">
+        <button class="btn btn-lg mb-2" type="submit">
           Report Bug
         </button>
       </div>
     </form>
-    <div class="col-4 offset-4 ">
+    <div class="col-10 offset-1 ">
       <bug-component v-for="bug in bugs" :key="bug" :bug-prop="bug" />
     </div>
   </div>
@@ -18,8 +18,8 @@
 
 <script>
 import { reactive, onMounted, computed } from 'vue'
-import BugComponent from '../components/BugComponent'
 import { bugService } from '../services/BugService'
+import BugComponent from '../components/BugComponent'
 import { AppState } from '../AppState'
 export default {
   name: 'Home',

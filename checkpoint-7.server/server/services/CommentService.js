@@ -4,7 +4,7 @@ import { BadRequest } from '../utils/Errors'
 
 class CommentService {
   async getComments(id) {
-    const data = await dbContext.Comments.find({ taskId: id }).populate('profile').populate('task')
+    const data = await dbContext.Comments.find({ bugId: id }).populate('bug')
     return data
   }
 
@@ -12,15 +12,13 @@ class CommentService {
     return await dbContext.Comments.create(body)
   }
 
-  async delete(id, userId) {
+  async delete(id) {
     const commentProfile = await dbContext.Comments.findById(id)
     // @ts-ignore
-    if (userId === commentProfile.profile) {
-      await dbContext.Comments.findByIdAndDelete(id)
-      if (!Comment) {
-        throw new BadRequest('No found Board')
-      } return this.getComments()
-    } throw new BadRequest('Access Denied')
+    await dbContext.Comments.findByIdAndDelete(id)
+    if (!Comment) {
+      throw new BadRequest('No found Board')
+    } return this.getComments()
   }
 
   async edit(id, body) {
